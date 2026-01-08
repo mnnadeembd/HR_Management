@@ -25,23 +25,23 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
 
-    Route::prefix('payroll')->controller(PayrollController::class)->group(function(){
+    Route::prefix('payroll')->controller(PayrollController::class)->group(function () {
         Route::get("/", "index");
     });
 
-    Route::prefix('attendance')->controller(AttendanceController::class)->group(function(){
-        Route::get("/", "index");
-        Route::get("create", "create");
-    });
-
-    Route::prefix("leave")->controller(LeaveController::class)->group(function(){
+    Route::prefix('attendance')->controller(AttendanceController::class)->group(function () {
         Route::get("/", "index");
         Route::get("create", "create");
     });
 
-    Route::prefix("salary")->controller(SalaryController::class)->group(function(){
+    Route::prefix("leave")->controller(LeaveController::class)->group(function () {
+        Route::get("/", "index");
+        Route::get("create", "create");
+    });
+
+    Route::prefix("salary")->controller(SalaryController::class)->group(function () {
         Route::get("/", "index");
     });
 
@@ -49,21 +49,25 @@ Route::middleware('auth')->group(function(){
         return view('pages.erp.dashboard.index');
     });
 
-    Route::prefix("employee")->controller(EmployeeController::class)->group(function(){
-        Route::get("/", "index");
-        Route::get("view/{id}", "show");
-        Route::get("edit/{id}", "edit");
-        Route::get("create", "create");
+    Route::prefix('employee')->controller(EmployeeController::class)->name('employee.')->group(function () {
+
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('view/{id}', 'show')->name('show');
+        Route::get('edit/{id}', 'edit')->name('edit');
     });
 
-    Route::prefix("designation")->controller(DesignationController::class)->group(function(){
+
+
+
+    Route::prefix("designation")->controller(DesignationController::class)->group(function () {
         Route::get("/", "index");
         Route::get("create", "create");
         Route::get("edit/{id}", "edit");
-
     });
 
-    Route::prefix('department')->controller(DepartmentController::class)->group(function(){
+    Route::prefix('department')->controller(DepartmentController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('create', 'create');
         Route::get('edit/{id}', 'edit');
@@ -98,8 +102,7 @@ Route::match(['get', 'post'], '/logout', [LoginController::class, 'logout'])->na
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get("sendmail", function(){
+Route::get("sendmail", function () {
     Mail::to("mkarimjui@gmail.com")->send(new UserNotification());
     return "Mail has been sent successfully";
 });
-

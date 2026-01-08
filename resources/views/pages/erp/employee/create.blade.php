@@ -11,26 +11,40 @@
             </div>
         </div>
         <div class="card-body">
-            <form class="row g-3 mt-0">
+            <form class="row g-3 mt-0" action="{{ route('employee.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="col-md-6">
                     <label class="form-label">Employee Name</label>
                     <input type="text" class="form-control" placeholder="First name"
                         aria-label="First name">
                 </div>
-                <div class="col-md-6">
-                    <label class="form-label">Employee Type</label>
-                    <input type="text" class="form-control" placeholder="Last name"
-                        aria-label="Last name">
+
+                 <div class="col-md-6">
+                    <label for="inputState" class="form-label">Designation</label>
+                    <select id="inputState" class="form-select form-select-lg">
+                        <option selected>Choose...</option>
+                        @forelse ($roles as $role)
+
+                        <option value="{{ $role->id }}">{{$role->name}}</option>
+                        @empty
+                        <option value="">Data Not Found</option>
+                        @endforelse
+                    </select>
                 </div>
+
+
                 <div class="col-md-6">
-                    <label class="form-label">Designaiton</label>
-                    <input type="text" class="form-control" placeholder="---"
-                        aria-label="First name">
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label">Department</label>
-                    <input type="text" class="form-control" placeholder="---"
-                        aria-label="Last name">
+                    <label for="inputState" class="form-label">Department</label>
+                    <select name="" id="inputState" class="form-select form-select-lg">
+                        <option selected>Choose...</option>
+                        @forelse ($departments as $department)
+                        <option value="{{$department->id}}">{{$department->name}}</option>
+
+                        @empty
+                        <option value=""></option>
+                        @endforelse
+
+                    </select>
                 </div>
 
                 <div class="col-md-6">
@@ -55,17 +69,15 @@
                     <label for="formFileSm" class="form-label">Photo</label>
                     <input type="file" class="form-control form-control-sm" id="formFileSm">
                 </div>
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">Status</label>
-                    <select id="inputState" class="form-select form-select-lg">
+                <div class="col-md-6">
+                    <label for="inputState" class="form-label">Employee Status</label>
+                    <select name="status" id="inputState" class="form-select form-select-lg">
                         <option selected>Choose...</option>
-                        <option>...</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
                     </select>
                 </div>
-                {{-- <div class="col-md-2">
-                    <label for="inputZip" class="form-label">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
-                </div> --}}
+
                 <div class="col-12">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="gridCheck3">
