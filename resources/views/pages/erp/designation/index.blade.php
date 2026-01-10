@@ -21,6 +21,7 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Designation Name</th>
+                                <th scope="col">Basic Salary</th>
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -29,6 +30,7 @@
                             <tr>
                                 <th scope="row">{{ $designation->id }}</th>
                                 <td>{{ $designation->name }}</td>
+                                <td>{{$designation->salary->basic_salary}}</td>
                                 <td class="text-center">
                                     @csrf
                                     <a href="{{url('/designation', $designation->id)}}">  <button type="button" class="btn btn-sm btn-primary btn-wave me-1">

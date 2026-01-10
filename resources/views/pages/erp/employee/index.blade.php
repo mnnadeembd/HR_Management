@@ -21,7 +21,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
-                                    <th>Designation</th>
+                                    <th>Role</th>
                                     <th>Department</th>
                                     <th>Phone</th>
                                     <th>Joinning Date</th>
@@ -33,7 +33,7 @@
                                     <tr>
                                         <th scope="row">{{ $employee->id }}</th>
                                         <td>{{ $employee->user?->name }}</td>
-                                        <td>{{ $employee->designation?->name }}</td>
+                                        <td>{{ $employee->role?->name?? '--' }}</td>
                                         <td>{{ $employee->department?->name }}</td>
                                         <td>{{ $employee->phone }}</td>
                                         <td>{{ $employee->joining_date }}</td>

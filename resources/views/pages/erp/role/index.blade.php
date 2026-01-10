@@ -76,6 +76,7 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Role Name</th>
+                                <th scope="col">Basic Salary</th>
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -84,6 +85,7 @@
                             <tr>
                                 <th scope="row">{{ $role->id }}</th>
                                 <td>{{ $role->name }}</td>
+                                <td>{{$role->salary?->salary->basic_salary }}</td>
                                 <td class="text-center">
                                     @csrf
                                     <button class="btn btn-sm btn-info btn-wave me-1">
