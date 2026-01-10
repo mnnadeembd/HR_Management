@@ -49,13 +49,16 @@ Route::middleware('auth')->group(function () {
         return view('pages.erp.dashboard.index');
     });
 
+
     Route::prefix('employee')->controller(EmployeeController::class)->name('employee.')->group(function () {
 
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
+
         Route::get('view/{id}', 'show')->name('show');
         Route::get('edit/{id}', 'edit')->name('edit');
+        Route::put('update/{id}', 'update')->name('update');
     });
 
 

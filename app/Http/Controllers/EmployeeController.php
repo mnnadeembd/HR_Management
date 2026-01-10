@@ -95,11 +95,18 @@ class EmployeeController extends Controller
 
 
 
+
+
+
     public function edit($id)
     {
         $employee = Employee::findOrFail($id);
-        return view('pages.erp.employee.edit', compact('employee'));
+        $roles = Role::all();
+        $departments = Department::all();
+
+        return view('pages.erp.employee.edit', compact('employee', 'roles', 'departments'));
     }
+
 
     public function delete($id)
     {
