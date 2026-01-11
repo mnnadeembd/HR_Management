@@ -55,7 +55,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
-
         Route::get('view/{id}', 'show')->name('show');
         Route::get('edit/{id}', 'edit')->name('edit');
         Route::put('update/{id}', 'update')->name('update');
@@ -71,31 +70,31 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('department')->controller(DepartmentController::class)->group(function () {
-        Route::get('/', 'index');
-        Route::get('create', 'create');
-        Route::get('edit/{id}', 'edit');
-        Route::delete('delete/{id}', 'delete');
+        Route::get('/', 'index')->name('department.index');
+        Route::get('create', 'create')->name('department.create');
+        Route::get('edit/{id}', 'edit')->name('department.edit');
+        Route::post('store', 'store')->name('department.store');
+        Route::put('update/{id}', 'update')->name('department.update');
+        Route::delete('delete/{id}', 'delete')->name('department.delete');
     });
 
-    Route::prefix('leave_type')->controller(LeavetypeController::class)->group(function () {
 
+    Route::prefix('leave_type')->controller(LeavetypeController::class)->group(function () {
         Route::get('/', 'index')->name('leavetype.index');
         Route::get('create', 'create')->name('leavetype.create');
         Route::post('store', 'store')->name('leavetype.store');
-
         Route::get('edit/{id}', 'edit')->name('leavetype.edit');
         Route::post('update/{id}', 'update')->name('leavetype.update');
-
         Route::delete('destroy/{id}', 'destroy');
     });
 
-
-    Route::get("/role/{id?}", [RoleController::class, 'index']);
-    Route::get("/role/create", [RoleController::class, 'create']);
-    // Route::get("/role/edit/{id}", [RoleController::class, 'edit']);
-
-
-
+    Route::prefix('role')->controller(RoleController::class)->group(function () {
+        Route::get('/', 'index')->name('role.index');
+        Route::get('create', 'create')->name('role.create');
+        Route::post('/store', 'store')->name('role.store');
+        Route::get('edit/{id}', 'edit')->name('role.edit');
+        Route::post('updata/{id}', 'update')->name('role.update');
+    });
 });
 
 Auth::routes();

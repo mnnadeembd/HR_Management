@@ -12,7 +12,7 @@
 
             <!-- Card Body -->
             <div class="card-body">
-                <form action="{{ url('/designation/store') }}" method="POST">
+                <form action="{{ route('department.update', $department->id) }}" method="POST">
                     @csrf
 
                     <div class="row align-items-end g-3">
@@ -26,7 +26,7 @@
                                 name="name"
                                 id="designation_name"
                                 class="form-control border-dotted"
-                                placeholder="Write the new designation"
+                                value="{{old('name', $department->name)}}"
                                 required>
                         </div>
 

@@ -9,7 +9,7 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="card-title mb-0">Department Table</h5>
                 <a href="{{ url('/department/create') }}" class="btn btn-success btn-sm">
-                    <i class="ri-add-line me-1"></i> Create a new role
+                    <i class="ri-add-line me-1"></i> add a new department
                 </a>
             </div>
 
