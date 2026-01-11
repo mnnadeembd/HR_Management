@@ -85,7 +85,7 @@
                             <tr>
                                 <th scope="row">{{ $role->id }}</th>
                                 <td>{{ $role->name }}</td>
-                                <td>{{$role->salary?->salary->basic_salary }}</td>
+                                <td>{{$role->salary?->salarie_id }}</td>
                                 <td class="text-center">
                                     @csrf
                                     <button class="btn btn-sm btn-info btn-wave me-1">
