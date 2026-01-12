@@ -27,19 +27,40 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
 
-    Route::prefix('payroll')->controller(PayrollController::class)->group(function () {
-        Route::get("/", "index");
+    Route::prefix('payroll')->controller(PayrollController::class)->name('payroll.')->group(function () {
+        Route::get("/", "index")->name('index');;
     });
 
-    Route::prefix('attendance')->controller(AttendanceController::class)->group(function () {
-        Route::get("/", "index");
-        Route::get("create", "create");
+    Route::prefix('attendance')->controller(AttendanceController::class)->name('attendance.')->group(function () {
+        Route::get("/", "index")->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('view/{id}', 'show')->name('show');
+        Route::get('edit/{id}', 'edit')->name('edit');
+        Route::put('update/{id}', 'update')->name('update');
+        // AJAX
+        Route::get('employees/{department_id}', 'getEmployeesByDepartment')->name('employees.by.department');
     });
 
-    Route::prefix("leave")->controller(LeaveController::class)->group(function () {
-        Route::get("/", "index");
-        Route::get("create", "create");
+
+
+      Route::prefix('leave')->controller(LeaveController::class)->name('leave.')->group(function () {
+
+      Route::get('/', 'index')->name('index');
+        // Employee leave apply form
+        Route::get('form', 'form')->name('form');
+        Route::post('submit', 'submit')->name('submit');
+
+        // Admin: pending leave list
+        Route::get('pending', 'pending')->name('pending');
+        Route::post('approve/{id}', 'approve')->name('approve');
+        Route::post('reject/{id}', 'reject')->name('reject');
+
+        // AJAX for employee dropdown
+        Route::get('employees/{department_id}', 'getEmployeesByDepartment')->name('employees.by.department');
     });
+
+
 
     Route::prefix("salary")->controller(SalaryController::class)->group(function () {
         Route::get("/", "index");

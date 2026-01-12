@@ -103,9 +103,9 @@
                             <a href="{{url('salary')}}" class="side-menu__item">Salary Record</a>
                         </li>
 
-                        <li class="slide">
+                        {{-- <li class="slide">
                             <a href="{{url('designation')}}" class="side-menu__item">Job Designations</a>
-                        </li>
+                        </li> --}}
                         <li class="slide">
                             <a href="{{url('department')}}" class="side-menu__item">Departments</a>
                         </li>

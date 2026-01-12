@@ -9,7 +9,7 @@
                 <!-- Card Header -->
                 <div class="card-header d-flex justify-content-between align-items-center w-100">
                     <h5 class="card-title mb-0">Employee Leave Records</h5>
-                    <a href="{{url('leave/create')}}" class="btn btn-success btn-sm" type="button">
+                    <a href="{{url('leave/form')}}" class="btn btn-success btn-sm" type="button">
                         <i class="ri-add-line me-1"></i> apply for leave
                     </a>
                 </div>

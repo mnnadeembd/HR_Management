@@ -25,6 +25,7 @@
                                 <th>Designation</th>
                                 <th>Department</th>
                                 <th>Check-in</th>
+                                <th>Date</th>
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -33,10 +34,11 @@
                             @forelse ($attendances as $attendance)
                             <tr>
                                 <th scope="row">{{ $attendance->id }}</th>
-                                <td>{{ $attendance->employee?->user?->name }}</td>
-                                <td>{{ $attendance->employee?->designation?->name }}</td>
+                                <td>{{ $attendance->employee?->user?->name }}-{{$attendance->employee?->user?->id}}</td>
+                                <td>{{ $attendance->employee?->role?->name }}</td>
                                 <td>{{ $attendance->employee?->department?->name }}</td>
                                 <td>{{ $attendance->check_in }}</td>
+                                <td>{{ $attendance->date }}</td>
                                 <td><span class="badge bg-success">{{ $attendance->status }}</span></td>
                                 <td class="text-center">
 
