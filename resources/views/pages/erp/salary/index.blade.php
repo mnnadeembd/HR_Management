@@ -33,7 +33,7 @@
                                 @forelse ($salaries as $salarie)
                                     <tr>
                                         <th scope="row">{{ $salarie->id }}</th>
-                                        <td>{{ $salarie->employee?->user?->name }}</td>
+                                        <td>{{ $salarie->user?->name }}</td>
                                         <td>{{ $salarie->month }}</td>
                                         <td>{{ $salarie->basic_salary }}</td>
                                         <td>{{ $salarie->deduction }}</td>

@@ -16,4 +16,8 @@ class Salary extends Model
     {
         return $this->hasMany(Role::class, 'salarie_id');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
