@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
 
-    Route::prefix('payroll')->controller(PayrollController::class)->name('payroll.')->group(function () {
+    Route::prefix('payrollitem')->controller(PayrollController::class)->name('payrollitem.')->group(function () {
         Route::get("/", "index")->name('index');;
     });
 

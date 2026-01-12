@@ -8,7 +8,7 @@
 
                     <!-- Card Header -->
                     <div class="card-header d-flex justify-content-between align-items-center w-100">
-                        <h5 class="card-title mb-0">Employee Patroll Table</h5>
+                        <h5 class="card-title mb-0">Payroll Items</h5>
                         <a href="{{url('payroll/create')}}" class="btn btn-success btn-sm" type="button">
                             <i class="ri-add-line me-1"></i> create a new payroll
                         </a>
@@ -21,25 +21,19 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Employee Name</th>
-                                    <th>S Month</th>
-                                    <th>G Salary</th>
-                                    <th>T Deduction</th>
-                                    <th>Net salary</th>
-                                    <th>Status</th>
-                                    <th>P Date</th>
+                                    <th>Earning/Deduction</th>
+                                    <th>Titel</th>
+                                    <th>Amount</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             {{-- <tbody>
                                 @forelse ($salaries as $salarie)
                                     <tr>
-                                        <th scope="row">{{ $employee->id }}</th>
-                                        <td>{{ $employee->user?->name }}</td>
-                                        <td>{{ $employee->designation?->name }}</td>
-                                        <td>{{ $employee->department?->name }}</td>
-                                        <td>{{ $employee->phone }}</td>
-                                        <td>{{ $employee->joining_date }}</td>
+                                        <th scope="row"></th>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td class="text-center">
 
                                             <a href="{{ url('/payroll/view', $employee->id) }}"
