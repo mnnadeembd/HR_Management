@@ -100,6 +100,10 @@
                         </li>
 
                         <li class="slide">
+                            <a href="{{url('payroll')}}" class="side-menu__item">Payroll</a>
+                        </li>
+
+                        <li class="slide">
                             <a href="{{url('salary')}}" class="side-menu__item">Salary Record</a>
                         </li>
 
@@ -112,9 +116,12 @@
                         <li class="slide">
                             <a href="{{url('leave_type')}}" class="side-menu__item">Leave Type</a>
                         </li>
+
                         <li class="slide">
-                            <a href="{{url('payroll')}}" class="side-menu__item">Payroll</a>
+                            <a href="{{url('payrollitem')}}" class="side-menu__item">Payroll Item</a>
                         </li>
+
+
                         <li class="slide">
                             <a href="{{ url('role') }}" class="side-menu__item">Jobs List</a>
                         </li>
