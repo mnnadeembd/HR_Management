@@ -10,4 +10,6 @@ class Role extends Model
     public function salary(){
         return $this->belongsTo(Salary::class, 'salarie_id');
     }
+
+    
 }
