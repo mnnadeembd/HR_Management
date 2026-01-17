@@ -4,25 +4,118 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Payroll extends Model {
+class Payroll extends Model
+{
     protected $fillable = [
-        'employee_id', 'salary_month', 'gross_salary', 'total_deduction', 'net_salary', 'payment_status'
+        'employee_id',
+        'salary_month',
+        'gross_salary',
+        'total_deduction',
+        'net_salary',
+        'payment_status'
     ];
 
-    public function details() {
+
+
+    public function designagtion()
+    {
+        return $this->belongsTo(Designation::class, 'designation_id');
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
+
+
+
+
+    public function allowances()
+    {
+        return $this->payroll_details->where('type', 'Allowance');
+    }
+
+    public function deductions()
+    {
+        return $this->payroll_details->where('type', 'Deduction');
+    }
+
+
+
+
+    public function payroll_details()
+    {
         return $this->hasMany(PayrollDetail::class, 'payroll_id');
     }
 
-    public function employee() {
-        return $this->belongsTo(Employee::class, 'employee_id');
+
+    public function net_salary_in_words()
+    {
+        $number = $this->net_salary;
+        $no = floor($number);
+        $point = round($number - $no, 2) * 100;
+        $hundred = null;
+        $digits_1 = strlen($no);
+        $i = 0;
+        $str = array();
+        $words = array(
+            '0' => '',
+            '1' => 'one',
+            '2' => 'two',
+            '3' => 'three',
+            '4' => 'four',
+            '5' => 'five',
+            '6' => 'six',
+            '7' => 'seven',
+            '8' => 'eight',
+            '9' => 'nine',
+            '10' => 'ten',
+            '11' => 'eleven',
+            '12' => 'twelve',
+            '13' => 'thirteen',
+            '14' => 'fourteen',
+            '15' => 'fifteen',
+            '16' => 'sixteen',
+            '17' => 'seventeen',
+            '18' => 'eighteen',
+            '19' => 'nineteen',
+            '20' => 'twenty',
+            '30' => 'thirty',
+            '40' => 'forty',
+            '50' => 'fifty',
+            '60' => 'sixty',
+            '70' => 'seventy',
+            '80' => 'eighty',
+            '90' => 'ninety'
+        );
+        $digits = array('', 'hundred', 'thousand', 'lakh', 'crore');
+
+        while ($i < $digits_1) {
+            $divider = ($i == 2) ? 10 : 100;
+            $number = floor($no % $divider);
+            $no = floor($no / $divider);
+            $i += ($divider == 10) ? 1 : 2;
+            if ($number) {
+                $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
+                $hundred = ($counter == 1 && $str[0]) ? ' and ' : null;
+                $str[] = ($number < 21) ? $words[$number] .
+                    " " . $digits[$counter] . $plural . " " . $hundred
+                    :
+                    $words[floor($number / 10) * 10]
+                    . " " . $words[$number % 10] . " "
+                    . $digits[$counter] . $plural . " " . $hundred;
+            } else $str[] = null;
+        }
+
+        $main_result = implode('', array_reverse($str));
+        $paisa_result = "";
+
+        // Logic for Paisa (Decimals)
+        if ($point > 0) {
+            $paisa_result = " and " . ($words[$point] ??
+                ($words[floor($point / 10) * 10] . " " . $words[$point % 10])) . " Paisa";
+        }
+
+        return ucwords($main_result) . " BDT" . $paisa_result;
     }
 }
-
-class PayrollDetail extends Model {
-    protected $fillable = [
-        'payroll_id', 'employee_id', 'payroll_item_id', 'type', 'title', 'amount'
-    ];
-}
-
-
-

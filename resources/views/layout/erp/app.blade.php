@@ -40,6 +40,7 @@
 
     <!-- Simplebar Css -->
     <link href="{{asset('assets')}}/libs/simplebar/simplebar.min.css" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Color Picker Css -->
     <link rel="stylesheet" href="{{asset('assets')}}/libs/flatpickr/flatpickr.min.css">

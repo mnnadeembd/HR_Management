@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Salary extends Model
 {
     protected $table = 'salaries';
+
     protected $fillable = ['basic_salary'];
+
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'employee_id');
@@ -18,9 +20,8 @@ class Salary extends Model
         return $this->hasMany(Role::class, 'salarie_id');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-
-    
 }

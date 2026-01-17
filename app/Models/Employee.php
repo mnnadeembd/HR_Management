@@ -9,7 +9,10 @@ class Employee extends Model
     protected $table = 'employees';
 
 
-
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class);
+    }
 
 
     public function department()
@@ -20,7 +23,7 @@ class Employee extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function role()

@@ -12,4 +12,6 @@ class Payrollitem extends Model
         'title',
         'amount',
     ];
+
+    protected $table = 'payrollitems';
 }

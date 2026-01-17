@@ -37,16 +37,14 @@ Route::middleware('auth')->group(function () {
         Route::delete("/destroy/{id}", "destroy")->name('destroy');
     });
 
-    Route::prefix('payroll')
-    ->controller(PayrollController::class)
-    ->name('payroll.')
-    ->group(function () {
+    Route::prefix('payroll')->controller(PayrollController::class)->name('payroll.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
         Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+        Route::get('/payslip/{id}', 'payslip')->name('payslip');
     });
 
     Route::prefix('attendance')->controller(AttendanceController::class)->name('attendance.')->group(function () {
@@ -62,9 +60,9 @@ Route::middleware('auth')->group(function () {
 
 
 
-      Route::prefix('leave')->controller(LeaveController::class)->name('leave.')->group(function () {
+    Route::prefix('leave')->controller(LeaveController::class)->name('leave.')->group(function () {
 
-      Route::get('/', 'index')->name('index');
+        Route::get('/', 'index')->name('index');
         // Employee leave apply form
         Route::get('form', 'form')->name('form');
         Route::post('submit', 'submit')->name('submit');
