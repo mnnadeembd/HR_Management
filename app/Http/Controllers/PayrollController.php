@@ -15,19 +15,9 @@ class PayrollController extends Controller
     public function index()
     {
         $departments = Department::select('id', 'name')->get();
-        $payrolls = Payroll::with('employee')->orderBy('salary_month', 'desc')->paginate(10);
+        $payrolls = Payroll::with('employee')->orderBy('salary_month', 'asc')->paginate(7);
         return view('pages.erp.payroll.index', compact('payrolls', 'departments'));
     }
-
-    // public function create()
-    // {
-    //     $employees = Employee::with('user')->get();
-    //     $payrollItems = PayrollItem::all();
-    //     return view('pages.erp.payroll.create', compact('employees', 'payrollItems'));
-    // }
-
-
-
 
 
     public function create()
@@ -140,5 +130,13 @@ class PayrollController extends Controller
         ])->findOrFail($id);
 
         return view('pages.erp.payroll.payslip', compact('payroll'));
+    }
+
+    public function destroy($id)
+    {
+
+        $payroll = Payroll::findOrFail($id);
+        $payroll->delete();
+        return redirect()->route('payroll.index')->with('success', 'Deleted successfully');
     }
 }

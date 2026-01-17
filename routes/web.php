@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
@@ -37,15 +38,21 @@ Route::middleware('auth')->group(function () {
         Route::delete("/destroy/{id}", "destroy")->name('destroy');
     });
 
+    
     Route::prefix('payroll')->controller(PayrollController::class)->name('payroll.')->group(function () {
+
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
+
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
-        Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+
+        Route::delete('/{id}', 'destroy')->name('destroy');
+
         Route::get('/payslip/{id}', 'payslip')->name('payslip');
     });
+
 
     Route::prefix('attendance')->controller(AttendanceController::class)->name('attendance.')->group(function () {
         Route::get("/", "index")->name('index');
@@ -132,6 +139,13 @@ Route::middleware('auth')->group(function () {
         Route::get('edit/{id}', 'edit')->name('role.edit');
         Route::post('updata/{id}', 'update')->name('role.update');
     });
+
+    
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+
+
+
 });
 
 Auth::routes();

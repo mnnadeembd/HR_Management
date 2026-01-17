@@ -46,7 +46,7 @@
                                                     Total Employees
                                                 </div>
                                                 <div class="d-flex align-items-end gap-2 flex-wrap">
-                                                    <h5 class="fw-semibold mb-0 lh-1">12,235</h5>
+                                                    <h5 class="fw-semibold mb-0 lh-1">{{ $activeEmployees }}</h5>
                                                     <div>
                                                         <span class="badge bg-success-transparent rounded-pill">
                                                             <i class="ti ti-arrow-up me-1"></i>3.21%
@@ -144,7 +144,7 @@
                                                     Resigned Employees
                                                 </div>
                                                 <div class="d-flex align-items-end gap-2 flex-wrap">
-                                                    <h5 class="fw-semibold mb-0 lh-1">1,986</h5>
+                                                    <h5 class="fw-semibold mb-0 lh-1">{{$inactiveEmployees}}</h5>
                                                     <div>
                                                         <span class="badge bg-success-transparent rounded-pill">
                                                             <i class="ti ti-arrow-up me-1"></i>0.97%
@@ -245,13 +245,13 @@
                             <li>
                                 <div class="d-flex align-items-center justify-content-between gap-2">
                                     <div class="attendance-type present">Present</div>
-                                    <div class="fw-semibold">1,754</div>
+                                    <div class="fw-semibold">{{ $attendanceSummary['Present'] ?? 0 }}</div>
                                 </div>
                             </li>
                             <li>
                                 <div class="d-flex align-items-center justify-content-between gap-2">
                                     <div class="attendance-type late">Late</div>
-                                    <div class="fw-semibold">878</div>
+                                    <div class="fw-semibold">{{ $attendanceSummary['Late'] ?? 0 }}</div>
                                 </div>
                             </li>
                             <li>
@@ -263,7 +263,7 @@
                             <li>
                                 <div class="d-flex align-items-center justify-content-between gap-2">
                                     <div class="attendance-type absent">Absent</div>
-                                    <div class="fw-semibold">470</div>
+                                    <div class="fw-semibold">{{ $attendanceSummary['Absent'] ?? 0 }}</div>
                                 </div>
                             </li>
                         </ul>
