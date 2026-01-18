@@ -8,6 +8,14 @@ class Payrolldetail extends Model
 {
     protected $table = 'payroll_details';
 
+    protected $fillable = [
+        'payroll_id',
+        'employee_id',
+        'type',
+        'title',
+        'amount',
+    ];
+
 
     public function payrollItem()
     {

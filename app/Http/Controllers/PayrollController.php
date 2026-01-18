@@ -59,7 +59,7 @@ class PayrollController extends Controller
             $gross = 0;
             $deduction = 0;
 
-            // 2️⃣ Allowances
+            //2️⃣ Allowances
             if ($request->has('allowance_title')) {
                 foreach ($request->allowance_title as $key => $title) {
                     $amount = $request->allowance_amount[$key];
@@ -112,11 +112,13 @@ class PayrollController extends Controller
             ]);
 
             DB::commit();
-
+            //return response()->json(['success' => true, 'message' => 'Payroll created successfully']);
             return redirect()->route('payroll.index')->with('success', 'Payroll created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', $e->getMessage());
+           // return back()->with('error', $e->getMessage());
+
+             //print_r(['success' => false, 'message' => 'Error creating payroll: ' . $e->getMessage()]);
         }
     }
 

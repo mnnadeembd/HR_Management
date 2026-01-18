@@ -76,7 +76,8 @@ class LeaveController extends Controller
             'approved_by' => Auth::id()
         ]);
 
-        return back()->with('success','Leave approved');
+        //return back()->with('success','Leave approved');
+        return redirect()->route('/leave')->with('success','Leave applied successfully');
     }
 
     // Admin reject

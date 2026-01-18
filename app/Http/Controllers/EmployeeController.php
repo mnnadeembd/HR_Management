@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Designation;
 use App\Models\Employee;
 use App\Models\Role;
 use App\Models\User;
@@ -30,16 +31,25 @@ class EmployeeController extends Controller
     }
 
     // ✅ FIXED CREATE METHOD
+
+
+
     public function create()
     {
         $roles = Role::select('id', 'name')->get();
         $departments = Department::select('id', 'name')->get();
-        return view('pages.erp.employee.create', compact('roles', 'departments'));
+        $designations = Designation::select('id', 'name')->get();
+
+        return view('pages.erp.employee.create', compact('roles', 'departments', 'designations'));
     }
 
 
     public function store(Request $request)
     {
+
+
+
+    //dd( $request->all() );
         //  Validate the form data
         $request->validate([
             'name' => 'required|string|max:255',
@@ -73,24 +83,31 @@ class EmployeeController extends Controller
                 'password' => Hash::make($request->password ?? '123456'), // default password
                 'role_id' => $request->role_id
             ]);
-
+               $salary = Role::with('salary')->find($request->role_id)->salary->basic_salary;
             // Insert into employees table
             Employee::create([
                 'user_id' => $user->id,
                 'department_id' => $request->department_id,
+                'designation_id' => $request->role_id,
                 'phone' => $request->phone,
                 'photo' => $photoPath,
                 'present_address' => $request->present_address,
                 'permanent_address' => $request->permanent_address,
-                // 'salary' => $request->salary,
                 'joining_date' => $request->joining_date,
                 'status' => $request->status,
+                "salary" =>$salary , // default salary
             ]);
+
+
         });
 
 
 
+
+
         return redirect('/employee')->with('success', 'Employee and User created successfully!');
+
+
     }
 
 
@@ -113,4 +130,11 @@ class EmployeeController extends Controller
         Employee::findOrFail($id)->delete();
         return redirect()->route('employee.index');
     }
+
+
+
+
+
+
+
 }
