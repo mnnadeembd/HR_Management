@@ -26,7 +26,7 @@
         }
 
         .payslip-card::before {
-            content: "{{ $payroll->payment_status == 'paid' ? 'PAID' : 'UNPAID' }}";
+            content: "{{ $payroll->payment_status == 'paid' ? 'APPROVED' : 'UNPAID' }}";
             position: absolute;
             top: 20px;
             right: -30px;

@@ -116,9 +116,9 @@ class PayrollController extends Controller
             return redirect()->route('payroll.index')->with('success', 'Payroll created successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-           // return back()->with('error', $e->getMessage());
+            // return back()->with('error', $e->getMessage());
 
-             //print_r(['success' => false, 'message' => 'Error creating payroll: ' . $e->getMessage()]);
+            //print_r(['success' => false, 'message' => 'Error creating payroll: ' . $e->getMessage()]);
         }
     }
 
@@ -133,6 +133,31 @@ class PayrollController extends Controller
 
         return view('pages.erp.payroll.payslip', compact('payroll'));
     }
+
+    public function pending()
+    {
+        $payrolls = Payroll::where('payment_status', 'Pending')->get();
+
+        return view('pages.erp.payroll.pending', compact('payrolls'));
+    }
+
+
+    public function approve(Request $request)
+    {
+        $request->validate([
+            'payroll_ids' => 'required|array',
+            'payment_date' => 'required|date',
+        ]);
+
+        Payroll::whereIn('id', $request->payroll_ids)
+            ->update([
+                'payment_status' => 'Approved',
+                'payment_date' => $request->payment_date,
+            ]);
+
+        return redirect()->back()->with('success', 'Payroll approved successfully');
+    }
+
 
     public function destroy($id)
     {

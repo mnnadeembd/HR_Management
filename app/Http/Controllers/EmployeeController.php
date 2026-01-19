@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,6 +31,19 @@ class EmployeeController extends Controller
         return view('pages.erp.employee.view', compact('employee'));
     }
 
+
+    public function myProfile()
+    {
+        $userId = Auth::id(); // login করা user এর id
+        $employee = Employee::where('user_id', $userId)->firstOrFail();
+        return view('pages.erp.employee.view', compact('employee'));
+    }
+
+
+
+
+
+
     // ✅ FIXED CREATE METHOD
 
 
@@ -49,7 +63,7 @@ class EmployeeController extends Controller
 
 
 
-    //dd( $request->all() );
+        //dd( $request->all() );
         //  Validate the form data
         $request->validate([
             'name' => 'required|string|max:255',
@@ -83,7 +97,7 @@ class EmployeeController extends Controller
                 'password' => Hash::make($request->password ?? '123456'), // default password
                 'role_id' => $request->role_id
             ]);
-               $salary = Role::with('salary')->find($request->role_id)->salary->basic_salary;
+            $salary = Role::with('salary')->find($request->role_id)->salary->basic_salary;
             // Insert into employees table
             Employee::create([
                 'user_id' => $user->id,
@@ -95,10 +109,8 @@ class EmployeeController extends Controller
                 'permanent_address' => $request->permanent_address,
                 'joining_date' => $request->joining_date,
                 'status' => $request->status,
-                "salary" =>$salary , // default salary
+                "salary" => $salary, // default salary
             ]);
-
-
         });
 
 
@@ -106,8 +118,6 @@ class EmployeeController extends Controller
 
 
         return redirect('/employee')->with('success', 'Employee and User created successfully!');
-
-
     }
 
 
@@ -130,11 +140,4 @@ class EmployeeController extends Controller
         Employee::findOrFail($id)->delete();
         return redirect()->route('employee.index');
     }
-
-
-
-
-
-
-
 }

@@ -88,37 +88,37 @@
                     <ul class="slide-menu child2">
 
                         <li class="slide">
-                            <a href="{{url('employee')}}" class="side-menu__item">Employees</a>
+                            <a href="{{ url('employee') }}" class="side-menu__item">Employees</a>
                         </li>
 
                         <li class="slide">
-                            <a href="{{url('attendance')}}" class="side-menu__item">Attendance Record</a>
+                            <a href="{{ url('attendance') }}" class="side-menu__item">Attendance Record</a>
                         </li>
 
                         <li class="slide">
-                            <a href="{{url('leave')}}" class="side-menu__item">Leave Record</a>
+                            <a href="{{ url('leave') }}" class="side-menu__item">Leave Record</a>
                         </li>
 
                         <li class="slide">
-                            <a href="{{url('payroll')}}" class="side-menu__item">Payroll</a>
+                            <a href="{{ url('payroll') }}" class="side-menu__item">Payroll</a>
                         </li>
 
                         <li class="slide">
-                            <a href="{{url('salary')}}" class="side-menu__item">Salary Record</a>
+                            <a href="{{ url('salary') }}" class="side-menu__item">Salary Record</a>
                         </li>
 
                         {{-- <li class="slide">
                             <a href="{{url('designation')}}" class="side-menu__item">Job Designations</a>
                         </li> --}}
                         <li class="slide">
-                            <a href="{{url('department')}}" class="side-menu__item">Departments</a>
+                            <a href="{{ url('department') }}" class="side-menu__item">Departments</a>
                         </li>
                         <li class="slide">
-                            <a href="{{url('leave_type')}}" class="side-menu__item">Leave Type</a>
+                            <a href="{{ url('leave_type') }}" class="side-menu__item">Leave Type</a>
                         </li>
 
                         <li class="slide">
-                            <a href="{{url('payrollitem')}}" class="side-menu__item">Payroll Item</a>
+                            <a href="{{ url('payrollitem') }}" class="side-menu__item">Payroll Item</a>
                         </li>
 
 
@@ -426,9 +426,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 256 256">
                     <rect width="256" height="256" fill="none" />
                     <polygon points="152 32 152 88 208 88 152 32" opacity="0.2" />
-                    <path d="M200,224H56a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h96l56,56V216A8,8,0,0,1,200,224Z"
-                        fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="16" />
+                    <path d="M200,224H56a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h96l56,56V216A8,8,0,0,1,200,224Z" fill="none"
+                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
                     <polyline points="152 32 152 88 208 88" fill="none" stroke="currentColor"
                         stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
                 </svg>
@@ -447,8 +446,8 @@
                             <path d="M128,128V48H48a8,8,0,0,0-8,8v56a146.29,146.29,0,0,0,.87,16Z" opacity="0.2" />
                             <path d="M128,128V232s78.06-21.3,87.13-104Z" opacity="0.2" />
                             <path d="M216,112V56a8,8,0,0,0-8-8H48a8,8,0,0,0-8,8v56c0,96,88,120,88,120S216,208,216,112Z"
-                                fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="16" />
+                                fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="16" />
                             <line x1="128" y1="232" x2="128" y2="48" fill="none"
                                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="16" />
@@ -618,8 +617,8 @@
                             <rect width="256" height="256" fill="none" />
                             <polygon points="152 32 152 88 208 88 152 32" opacity="0.2" />
                             <path d="M200,224H56a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h96l56,56V216A8,8,0,0,1,200,224Z"
-                                fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="16" />
+                                fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="16" />
                             <polyline points="152 32 152 88 208 88" fill="none" stroke="currentColor"
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
                             <line x1="96" y1="136" x2="160" y2="136" fill="none"
@@ -706,8 +705,8 @@
                             <circle cx="128" cy="128" r="96" opacity="0.2" />
                             <circle cx="128" cy="180" r="12" />
                             <path d="M128,144v-8c17.67,0,32-12.54,32-28s-14.33-28-32-28S96,92.54,96,108v4"
-                                fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="16" />
+                                fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="16" />
                             <circle cx="128" cy="128" r="96" fill="none" stroke="currentColor"
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
                         </svg>
@@ -721,8 +720,8 @@
                             <path d="M168,200V104h56v88a8,8,0,0,1-8,8Z" opacity="0.2" />
                             <path
                                 d="M64,56H40A16,16,0,0,0,24,72h0A16,16,0,0,0,40,88H56a16,16,0,0,1,16,16h0a16,16,0,0,1-16,16H28"
-                                fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="16" />
+                                fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="16" />
                             <line x1="48" y1="48" x2="48" y2="56" fill="none"
                                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="16" />
@@ -1698,7 +1697,9 @@
         <!-- End::slide -->
         <!-- Start::slide -->
         <li class="slide">
-            <a href="profile-settings.html" class="side-menu__item">
+
+
+            <a href="{{ route('my.profile') }}" class="side-menu__item">
                 <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 256 256">
                     <rect width="256" height="256" fill="none" />
                     <path

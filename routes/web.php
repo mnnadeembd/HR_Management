@@ -17,14 +17,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-// Route::get('/', function () {
-//     return view('layout.erp.app');
-// });
 
 
 Route::middleware('auth')->group(function () {
@@ -38,7 +30,7 @@ Route::middleware('auth')->group(function () {
         Route::delete("/destroy/{id}", "destroy")->name('destroy');
     });
 
-    
+
     Route::prefix('payroll')->controller(PayrollController::class)->name('payroll.')->group(function () {
 
         Route::get('/', 'index')->name('index');
@@ -51,6 +43,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', 'destroy')->name('destroy');
 
         Route::get('/payslip/{id}', 'payslip')->name('payslip');
+
+        // Pending payrolls
+        Route::get('pending', 'pending')->name('pending');
+        Route::post('approve', 'approve')->name('approve');
+
+
+
+
     });
 
 
@@ -84,7 +84,6 @@ Route::middleware('auth')->group(function () {
     });
 
 
-
     Route::prefix("salary")->controller(SalaryController::class)->group(function () {
         Route::get("/", "index");
     });
@@ -105,6 +104,7 @@ Route::middleware('auth')->group(function () {
     });
 
 
+    Route::get('/my-profile', [EmployeeController::class, 'myProfile'])->name('my.profile')->middleware('auth');
 
 
     Route::prefix("designation")->controller(DesignationController::class)->group(function () {
@@ -140,12 +140,8 @@ Route::middleware('auth')->group(function () {
         Route::post('updata/{id}', 'update')->name('role.update');
     });
 
-    
+
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
-
-
-
 });
 
 Auth::routes();
