@@ -138,14 +138,9 @@
                             data-bs-toggle="dropdown" aria-expanded="false">Login-Info</button>
 
                         <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item login-type" href="#" data-email="mnnadeembd@gmail.com" data-password="12345678">
-                                    Login as an Admin
-                                </a>
-
-                            </li>
-                            <li><a class="dropdown-item login-type" href="#" data-email="Enter Email" data-password="Enter Password">Login as a User</a></li>
-                            <li><a class="dropdown-item login-type" href="#" data-email="mnnadeembd@gmail.com" data-password="12345678">Login as a Guest</a></li>
+                            <li><a class="dropdown-item login-type" href="#" data-email="mnnadeembd@gmail.com" data-password="12345678">Login as a /Super Admin</a></li>
+                            <li><a class="dropdown-item login-type" href="#" data-email="elenga@hotmail.com" data-password="12345678">Login as a Employee</a></li>
+                            <li><a class="dropdown-item login-type" href="#" data-email="mdrashedulislam604@gmail.com" data-password="12345678">Login as a Admin</a></li>
                         </ul>
                     </div>
 

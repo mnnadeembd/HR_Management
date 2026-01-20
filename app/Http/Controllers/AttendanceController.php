@@ -13,12 +13,25 @@ use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
+
+
+
+    protected $table = 'attendances';
+
+    // either add these
+    protected $fillable = [
+        'employee_id',
+        'date',
+        'check_in',
+        'check_out',
+        'status',
+    ];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $attendances = Attendance::with(['employee'])->orderBy('id', 'asc')->paginate(5);
+        $attendances = Attendance::with(['employee'])->orderBy('id', 'desc')->paginate(5);
         return view("pages.erp.attendance.index", compact("attendances"));
     }
 
@@ -72,49 +85,74 @@ class AttendanceController extends Controller
         return response()->json($employees);
     }
 
+
+
     public function store(Request $request)
     {
         $request->validate([
             'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
             'type' => 'required|in:check_in,check_out',
             'employees' => 'required|array',
         ]);
 
+        $time = \Carbon\Carbon::createFromFormat('H:i', $request->time)->format('H:i:s');
+
         foreach ($request->employees as $employee_id) {
 
-            $attendance = Attendance::where('employee_id', $employee_id)
-                ->where('date', $request->date)
-                ->first();
+            $attendance = Attendance::firstOrNew([
+                'employee_id' => $employee_id,
+                'date' => $request->date,
+            ]);
+
+            $attendance->status = 'Pending';
 
             if ($request->type === 'check_in') {
-
-                Attendance::updateOrCreate(
-                    [
-                        'employee_id' => $employee_id,
-                        'date' => $request->date,
-                    ],
-                    [
-                        'check_in' => Carbon::now()->format('H:i:s'),
-                        'status' => Carbon::now()->format('H:i:s') > '09:00:00'
-                            ? 'Late'
-                            : 'Present',
-                    ]
-                );
-
-            } else { // checkout
-
-                if ($attendance) {
-                    $attendance->update([
-                        'check_out' => Carbon::now()->format('H:i:s'),
-                    ]);
+                // Only set check-in if empty
+                if (!$attendance->check_in) {
+                    $attendance->check_in = $time;
                 }
+            } else { // check_out
+                // Always set check-out (even if check-in null)
+                $attendance->check_out = $time;
             }
+
+            $attendance->save();
         }
 
-        return redirect()->back()->with('success', 'Attendance saved successfully');
+        return redirect()->route('attendance.index')->with('success', 'Attendance submitted and waiting for approval');
     }
 
 
 
 
+    public function pending()
+    {
+        $attendances = Attendance::where('status', 'Pending')
+            ->with('employee.user')
+            ->get();
+
+        return view('pages.erp.attendance.pending', compact('attendances'));
+    }
+
+
+
+    public function approve($id)
+    {
+        $user = auth()->user();
+        $employee = $user->employee;
+        $allowedDepartments = [1, 7];
+
+        // Authorization
+        if (!in_array($user->role_id, [1, 2]) && (! $employee || ! in_array($employee->department_id, $allowedDepartments))) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $attendance = Attendance::findOrFail($id);
+
+        $attendance->status = ($attendance->check_in > '09:00:00') ? 'Late' : 'Present';
+        $attendance->save();
+
+        return redirect()->back()->with('success', 'Attendance approved successfully');
+    }
 }

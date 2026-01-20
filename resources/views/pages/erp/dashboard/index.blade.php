@@ -76,7 +76,7 @@
                                                     New Employees
                                                 </div>
                                                 <div class="d-flex align-items-end gap-2 flex-wrap">
-                                                    <h5 class="fw-semibold mb-0 lh-1">10,784</h5>
+                                                    <h5 class="fw-semibold mb-0 lh-1">{{ $newEmployeesCount }}</h5>
                                                     <div>
                                                         <span class="badge bg-danger-transparent rounded-pill">
                                                             <i class="ti ti-arrow-down me-1"></i>1.86%
@@ -89,7 +89,11 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
-                                        <div
+
+
+
+
+                                        {{-- <div
                                             class="card custom-card dashboard-main-card dashboard-main-border border-0 shadow-none border-lg-end mb-0 rounded-0">
                                             <div class="card-body">
                                                 <div class="mb-3">
@@ -118,7 +122,7 @@
 
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="col-xl-6">
                                         <div
@@ -159,8 +163,9 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col-xl-12">
+                    {{-- <div class="col-xl-12">
                         <div class="card custom-card">
                             <div class="card-body">
                                 <h6 class="fw-semibold mb-3">Employees Status</h6>
@@ -203,11 +208,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
+
             <div class="col-xxl-5 col-xl-6">
-                <div class="card custom-card">
+                {{-- <div class="card custom-card">
                     <div class="card-header">
                         <div class="card-title">
                             Candidate Statistics
@@ -230,9 +236,11 @@
                         </div>
                         <div id="candidate-statistics" class="p-3"></div>
                     </div>
-                </div>
-            </div>
-            <div class="col-xxl-3">
+                </div> --}}
+
+
+
+                <div class="col-xxl-3">
                 <div class="card custom-card">
                     <div class="card-header">
                         <div class="card-title">
@@ -245,25 +253,25 @@
                             <li>
                                 <div class="d-flex align-items-center justify-content-between gap-2">
                                     <div class="attendance-type present">Present</div>
-                                    <div class="fw-semibold">{{ $attendanceSummary['Present'] ?? 0 }}</div>
+                                    <div class="fw-semibold">{{ $presentCount }}</div>
                                 </div>
                             </li>
                             <li>
                                 <div class="d-flex align-items-center justify-content-between gap-2">
                                     <div class="attendance-type late">Late</div>
-                                    <div class="fw-semibold">{{ $attendanceSummary['Late'] ?? 0 }}</div>
+                                    <div class="fw-semibold">{{ $lateCount }}</div>
                                 </div>
                             </li>
                             <li>
                                 <div class="d-flex align-items-center justify-content-between gap-2">
                                     <div class="attendance-type permission">Permission</div>
-                                    <div class="fw-semibold">634</div>
+                                    <div class="fw-semibold">{{ $permissionCount }}</div>
                                 </div>
                             </li>
                             <li>
                                 <div class="d-flex align-items-center justify-content-between gap-2">
                                     <div class="attendance-type absent">Absent</div>
-                                    <div class="fw-semibold">{{ $attendanceSummary['Absent'] ?? 0 }}</div>
+                                    <div class="fw-semibold">{{ $absentCount }}</div>
                                 </div>
                             </li>
                         </ul>
@@ -274,11 +282,54 @@
                     </div>
                 </div>
             </div>
+            </div>
+            {{-- <div class="col-xxl-3">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Attendance Overview
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="attendance-overview"></div>
+                        <ul class="list-unstyled my-4 hrm-attendance-overview-list">
+                            <li>
+                                <div class="d-flex align-items-center justify-content-between gap-2">
+                                    <div class="attendance-type present">Present</div>
+                                    <div class="fw-semibold">{{ $presentCount }}</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex align-items-center justify-content-between gap-2">
+                                    <div class="attendance-type late">Late</div>
+                                    <div class="fw-semibold">{{ $lateCount }}</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex align-items-center justify-content-between gap-2">
+                                    <div class="attendance-type permission">Permission</div>
+                                    <div class="fw-semibold">{{ $permissionCount }}</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex align-items-center justify-content-between gap-2">
+                                    <div class="attendance-type absent">Absent</div>
+                                    <div class="fw-semibold">{{ $absentCount }}</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="d-grid">
+                            <button class="btn btn-light btn-lg">View Complete Statistics <i
+                                    class="ti ti-arrow-narrow-right ms-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
         </div>
         <!-- End:: row-1 -->
 
         <!-- Start:: row-2 -->
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-xxl-4">
                 <div class="card custom-card">
                     <div class="card-header">
@@ -575,11 +626,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End:: row-2 -->
 
         <!-- Start:: row-3 -->
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-xl-12">
                 <div class="card custom-card">
                     <div class="card-header justify-content-between">
@@ -842,7 +893,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End:: row-3 -->
 
     </div>
