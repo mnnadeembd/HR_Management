@@ -57,7 +57,7 @@ class LeaveController extends Controller
     // Admin: pending leave list
     public function pending()
     {
-        if (!in_array(Auth::id(), [1,2, 11])) abort(403);
+        if (!in_array(Auth::id(), [1,2, 3])) abort(403);
 
         $leaves = Leave::with(['employee.user','leaveType'])->where('status','Pending')->get();
 
@@ -68,7 +68,7 @@ class LeaveController extends Controller
     // Admin approve
     public function approve($id)
     {
-        if (!in_array(Auth::id(), [1,2, 11])) abort(403);
+        if (!in_array(Auth::id(), [1,2, 3])) abort(403);
 
         $leave = Leave::findOrFail($id);
         $leave->update([

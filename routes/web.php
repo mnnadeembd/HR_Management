@@ -63,6 +63,10 @@ Route::middleware('auth')->group(function () {
         Route::put('update/{id}', 'update')->name('update');
         // AJAX
         Route::get('employees/{department_id}', 'getEmployeesByDepartment')->name('employees.by.department');
+
+        // Pending attendances
+        Route::get('pending', 'pending')->name('pending');
+        Route::post('approve/{id}', 'approve')->name('approve');
     });
 
 
