@@ -749,7 +749,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="sign-in-cover.html"><i
+                    <li><a class="dropdown-item d-flex align-items-center" href="{{route('logout') }}"><i
                                 class="ti ti-logout me-2 fs-18"></i>Log Out</a></li>
                 </ul>
             </div>
